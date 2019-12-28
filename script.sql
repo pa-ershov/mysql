@@ -3,4 +3,136 @@ CREATE DATABASE gos;
 USE gos;
 
 DROP TABLE IF EXISTS users;
-CREATE TABLE users ()
+
+CREATE TABLE users (
+id INT UNSIGNED NOT NULL AUTO_INCREMENT PRIMARY KEY,
+first_name VARCHAR(100) NOT NULL,
+patronomic VARCHAR(100) NOT NULL,
+last_name VARCHAR(100) NOT NULL,
+phone VARCHAR(100) NOT NULL UNIQUE
+);
+
+
+DROP TABLE IF EXISTS profiles;
+
+CREATE TABLE profiles (
+id INT UNSIGNED NOT NULL AUTO_INCREMENT PRIMARY KEY,
+sex CHAR(1) NOT NULL,
+birthday DATE NOT NULL,
+created_at DATETIME DEFAULT NOW(),
+email VARCHAR(100) NOT NULL UNIQUE,
+post_code INT(6) NOT NULL,
+region VARCHAR(50) NOT NULL,
+city VARCHAR(50) NOT NULL,
+street VARCHAR(100),
+house_number INT(10) NOT NULL,
+building_number INT(10),
+flat_number INT(10)
+);
+
+
+DROP TABLE IF EXISTS documents;
+
+CREATE TABLE documents (
+id INT UNSIGNED NOT NULL AUTO_INCREMENT PRIMARY KEY,
+document_name VARCHAR(25) NOT NULL COLLATE utf8_unicode_ci UNIQUE
+);
+
+
+DROP TABLE IF EXISTS documents_type;
+
+CREATE TABLE documents_type (
+document_id INT UNSIGNED NOT NULL AUTO_INCREMENT PRIMARY KEY,
+name VARCHAR(255) NOT NULL UNIQUE
+);
+
+
+DROP TABLE IF EXISTS documents_images;
+
+CREATE TABLE documents_images (
+image_id INT UNSIGNED NOT NULL AUTO_INCREMENT PRIMARY KEY,
+image_type VARCHAR(25),
+image BLOB,
+image_size VARCHAR(25),
+image_category VARCHAR(25),
+image_name VARCHAR(50)
+);
+
+
+DROP TABLE IF EXISTS passports;
+
+CREATE TABLE passports (
+id INT UNSIGNED NOT NULL AUTO_INCREMENT PRIMARY KEY,
+passport_id INT(10) NOT NULL UNIQUE,
+serial_number INT(10) NOT NULL,
+number_number INT(10) NOT NULL UNIQUE,
+code_number INT(10) NOT NULL,
+issued_at DATE,
+whom_at VARCHAR(200) NOT NULL
+);
+
+
+DROP TABLE IF EXISTS snails;
+
+CREATE TABLE snails (
+id INT UNSIGNED NOT NULL AUTO_INCREMENT PRIMARY KEY,
+snails_number INT UNSIGNED UNIQUE
+);
+
+
+DROP TABLE IF EXISTS family;
+
+CREATE TABLE family (
+id INT UNSIGNED NOT NULL AUTO_INCREMENT PRIMARY KEY,
+family_status VARCHAR(10) NOT NULL,
+married_at DATETIME,
+child_id INT UNSIGNED
+);
+
+
+DROP TABLE IF EXISTS family_statuses;
+
+CREATE TABLE family_statuses (
+id INT UNSIGNED NOT NULL AUTO_INCREMENT PRIMARY KEY,
+name VARCHAR(10) NOT NULL
+);
+
+
+DROP TABLE IF EXISTS children;
+
+CREATE TABLE children (
+id INT UNSIGNED NOT NULL AUTO_INCREMENT PRIMARY KEY,
+child_firstname VARCHAR(100) NOT NULL,
+child_patronomic VARCHAR(100) NOT NULL,
+child_lastname VARCHAR(100) NOT NULL,
+birthday DATE NOT NULL,
+birth_certificate INT(20) UNSIGNED NOT NULL,
+father_id INT,
+mother_id INT
+);
+
+
+DROP TABLE IF EXISTS notifications;
+
+CREATE TABLE notifications (
+id INT UNSIGNED NOT NULL AUTO_INCREMENT PRIMARY KEY,
+topic VARCHAR(500) NOT NULL,
+body VARCHAR(500) NOT NULL,
+notification_status VARCHAR(10)
+) ENGINE=ARCHIVE CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+
+DROP TABLE IF EXISTS category_service;
+
+CREATE TABLE category_service (
+id INT UNSIGNED NOT NULL AUTO_INCREMENT PRIMARY KEY,
+category_name VARCHAR(250) NOT NULL
+);
+
+
+DROP TABLE IF EXISTS category_service;
+
+CREATE TABLE service (
+id INT UNSIGNED NOT NULL AUTO_INCREMENT PRIMARY KEY,
+service_name VARCHAR(250) NOT NULL
+);
