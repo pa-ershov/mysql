@@ -1,0 +1,6 @@
+CREATE DATABASE gos;
+
+USE gos;
+
+DROP TABLE IF EXISTS users;
+CREATE TABLE users ()
