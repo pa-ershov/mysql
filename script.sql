@@ -117,9 +117,8 @@ DROP TABLE IF EXISTS notifications;
 CREATE TABLE notifications (
 id INT UNSIGNED NOT NULL AUTO_INCREMENT PRIMARY KEY,
 topic VARCHAR(500) NOT NULL,
-body VARCHAR(500) NOT NULL,
-notification_status VARCHAR(10)
-) ENGINE=ARCHIVE CHARSET=utf8 COLLATE=utf8_unicode_ci;
+body VARCHAR(500) NOT NULL
+);
 
 
 DROP TABLE IF EXISTS category_service;
@@ -130,9 +129,12 @@ category_name VARCHAR(250) NOT NULL
 );
 
 
-DROP TABLE IF EXISTS category_service;
+DROP TABLE IF EXISTS service;
 
 CREATE TABLE service (
 id INT UNSIGNED NOT NULL AUTO_INCREMENT PRIMARY KEY,
-service_name VARCHAR(250) NOT NULL
+category_name VARCHAR(250) NOT NULL,
+category_id INT UNSIGNED NOT NULL
 );
+
+
